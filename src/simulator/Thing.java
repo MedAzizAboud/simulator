@@ -13,7 +13,7 @@ package simulator;
 public class Thing {
     private int id;
     private String name;
-    private int zone;
+    private Zone zone;
     
     /**
      * creates new thing
@@ -21,17 +21,20 @@ public class Thing {
      * @param name
      * @param zone
      */
-    public Thing(int id, String name,int zone ){
+    public Thing(int id, String name,Zone zone ){
         this.id=id;
         this.name=name;
         this.zone=zone;
     }
 
-    public void setZone(int zone){
+    public void setZone(Zone zone){
         this.zone=zone;
     }
-    public int getZone(){
+    public Zone getZone(){
         return zone;
+    }
+    public void setId(int id){
+        this.id=id;
     }
     public int getId(){
         return id;

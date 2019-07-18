@@ -6,6 +6,8 @@
 package simulator;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -15,10 +17,13 @@ import java.util.Objects;
 public class Capability {
     private String name;
     private String type;
+    private int resourceConsumption;
     
-    public Capability(String name, String type){
+    
+    public Capability(String name, String type, int resourceConsumption){
         this.name=name;
         this.type=type;
+        this.resourceConsumption=resourceConsumption;
     }
     
     public String getName(){
@@ -26,6 +31,9 @@ public class Capability {
     }
     public String getType(){
         return type;
+    }
+    public int getResourceConsumption(){
+        return resourceConsumption;
     }
     
 @Override

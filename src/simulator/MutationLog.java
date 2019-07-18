@@ -19,6 +19,9 @@ public class MutationLog {
     private ArrayList<Capability> nextState;
     private boolean thingDecision;
     private boolean authorityDecision;
+    private double achievementDegree;
+    private int actualResourceConsumption;
+    private int estimatedResourceConsumption;
     
     /**
      * creates new MutationLog object
@@ -29,7 +32,7 @@ public class MutationLog {
      * @param thingDecision
      * @param authorityDecision 
      */
-    public MutationLog(int id, String date, int simulationMode, ArrayList<Capability> currentState, ArrayList<Capability> nextState, boolean thingDecision, boolean authorityDecision){
+    public MutationLog(int id, String date, int simulationMode, ArrayList<Capability> currentState, ArrayList<Capability> nextState, boolean thingDecision, boolean authorityDecision, double achievementDegree, int actualResourceConsumption, int estimatedResourceConsumption){
         this.id=id;
         this.date=date;
         this.simulationMode=simulationMode;
@@ -37,6 +40,9 @@ public class MutationLog {
         this.nextState=nextState;
         this.thingDecision=thingDecision;
         this.authorityDecision=authorityDecision;
+        this.achievementDegree=achievementDegree;
+        this.estimatedResourceConsumption=estimatedResourceConsumption;
+        this.actualResourceConsumption=actualResourceConsumption;
     }
     public int getId(){
         return id;
@@ -59,62 +65,14 @@ public class MutationLog {
     public boolean getAuthorityDecision(){
         return authorityDecision;
     }
-    /**
-     * gets deviant logs corresponding to a MutableThing
-     * @param thingId
-     * @return list of mutationLogs
-     */
-    public static ArrayList<MutationLog> getDeviantLogs(int thingId){
-        ArrayList<MutationLog> deviantLogs = new ArrayList<>();
-        for (MutationLog mutationLog : MutableThing.mutationLogs) {
-            if(mutationLog.getId() == thingId){
-            boolean sameState = false;
-            int count = 0;
-            if(mutationLog.getCurrentState().size() == mutationLog.getNextState().size()){
-                for(int i=0;i<mutationLog.getCurrentState().size();i++){
-                    if(!mutationLog.getNextState().contains(mutationLog.getCurrentState().get(i))){
-                        break;
-                    }
-                    count++;
-                }
-                if(count == mutationLog.getCurrentState().size()){
-                    sameState = true;
-                }
-            }
-            if(mutationLog.getAuthorityDecision() == sameState){
-                deviantLogs.add(mutationLog);
-            }
-            }
-        }
-        return deviantLogs;
+    public double getAchievementDegree(){
+        return achievementDegree;
     }
-    /**
-     * gets nonDeviant logs corresponding to a MutableThing
-     * @param thingId
-     * @return list of mutationLogs
-     */
-    public static ArrayList<MutationLog> getNonDeviantLogs(int thingId){
-        ArrayList<MutationLog> nonDeviantLogs = new ArrayList<>();
-        for (MutationLog mutationLog : MutableThing.mutationLogs) {
-            if(mutationLog.getId() == thingId){
-            boolean sameState = false;
-            int count = 0;
-            if(mutationLog.getCurrentState().size() == mutationLog.getNextState().size()){
-                for(int i=0;i<mutationLog.getCurrentState().size();i++){
-                    if(!mutationLog.getNextState().contains(mutationLog.getCurrentState().get(i))){
-                        break;
-                    }
-                    count++;
-                }
-                if(count == mutationLog.getCurrentState().size()){
-                    sameState = true;
-                }
-            }
-            if(mutationLog.getAuthorityDecision() != sameState){
-                nonDeviantLogs.add(mutationLog);
-            }
-            }
-        }
-        return nonDeviantLogs;
+    public int getActualResourceConsumption(){
+        return actualResourceConsumption;
     }
+    public int getEstimatedResourceConsumption(){
+        return estimatedResourceConsumption;
+    }
+    
 }
